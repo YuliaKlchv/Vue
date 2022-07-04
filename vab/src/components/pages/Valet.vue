@@ -1,15 +1,28 @@
 <template>
  <div class="div_valet" >
- 
+  <img :src="'data:image/jpg;base64,' + image" />
 
  </div>
 
 
 </template>
 <script>
+import axios from 'axios';
 export default {
   name:'Valet',
   
+  data() {
+    return {
+      image: null,
+    }
+  },
+  async mounted() {
+    console.log("here")
+  const token = localStorage.getItem("token");
+   this.image = (await axios.get('http://localhost:3000/images/Valet.png', { headers: {"Authorization" : `Bearer ${token}`} })).data; 
+
+    
+  }
   
 }
 </script>

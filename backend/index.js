@@ -9,6 +9,7 @@ const argon2 = require('argon2');
 const db = require('./database');
 const jwt = require('jsonwebtoken')
 const { pool } = require("./dbConfig")
+const fs = require('fs');
 require("dotenv").config();
 
 app.use(express.json())
@@ -26,10 +27,16 @@ app.get('/posts', authenticateToken, (req, res,) => {
   res.status(200).send('Success!');
 });
 
+
+app.get('/images/:filename', authenticateToken, (req, res) => {
+  const filename = req.params.filename;
+  const file = fs.readFileSync("./pictures/" + filename);
+  res.status(200).send(new Buffer(file).toString('base64'));
+})
 function authenticateToken(req, res, next) {
   const authHeader = req.headers['authorization']
   const token = authHeader && authHeader.split(' ')[1]
-  if (token == null) return res.sendStatus(401)
+  if (!token) return res.sendStatus(401)
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
     console.log(err)
     if (err) return res.sendStatus(403)

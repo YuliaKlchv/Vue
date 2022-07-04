@@ -1,72 +1,48 @@
 <template>
-<div class="allgemein">
-    
+  <div class="allgemein">
     <div class="header">
-    <Header />
- 
-    <div class ="Login">
-    
-    <div class="sidebar1">
+      <Header />
 
-    <Sidebar/>
- 
-    
-<router-view/>
-    
-    
-    </div>   
+      <div class="Login">
+        <div class="sidebar1">
+          <Sidebar />
+
+          <router-view />
+        </div>
+      </div>
     </div>
-
-   
-</div>
-
-
   </div>
-  
 </template>
 <script>
-import Header from './Header.vue';
+import Header from "./Header.vue";
 
-import Sidebar from './Sidebar.vue'
+import Sidebar from "./Sidebar.vue";
 
-import Login from './Login.vue'
+import Login from "./Login.vue";
 
-import Register from './Register.vue'
+import Register from "./Register.vue";
 
 // import axios from 'axios' ;
 
-
 export default {
-    name:'Home',
-    components:{
-        Header,
-        Sidebar,
-        Login,
-        Register,
-      
- },
-    // async created(){
-    //     const response =await axios.get('user', {
-    //         headers: {
-    //             Authorization:'Hello'+ localStorage.getItem('token')
-    //         }
-    //     });
-    //     console.log(response);
-    // }            
-}
+  name: "Home",
+  components: {
+    Header,
+    Sidebar,
+     Register,
+    Login,
+   
+  },
+  mounted() {
 
+  },
+};
 </script>
 <style scoped>
-
 .sidebar1 {
-    display: grid;
-    grid-template-columns: 0.5fr 12fr;
-    background-color:lightgray;
-    height: 90vh;
-         
-   }
-      
-
-
-
+  display: grid;
+  grid-template-columns: 0.5fr 12fr;
+  background-color: lightgray;
+  height: 90vh;
+}
 </style>

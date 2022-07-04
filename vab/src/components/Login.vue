@@ -42,6 +42,7 @@ import axios from 'axios'
 
 export default {
   name: 'Login',
+  
   data: function () {
     
 
@@ -52,21 +53,21 @@ export default {
       message:"Login is successful"
     }
   },
-           
+      
   methods: {
     
   login() {
     
      axios.post('http://localhost:3000/Login', 
      {username:this.username,password:this.password}, 
+     
   ).then(res =>  {
-
+    console.log
     // TODO save the token to axios
      const token =res.data
+    window.localStorage.setItem("token", token);
     axios.get('http://localhost:3000/posts', { headers: {"Authorization" : `Bearer ${token}`} });
        this.$router.push("/Brain")
-
-
 
   }).catch((error) => {{
     console.error(error)
@@ -77,9 +78,10 @@ export default {
  
     },
    
-
-  }
-}
+  },
+   
+}  
+  
 </script>
 
 <style scoped>
