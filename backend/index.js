@@ -11,12 +11,11 @@ const jwt = require('jsonwebtoken')
 const { pool } = require("./dbConfig")
 const fs = require('fs');
 require("dotenv").config();
+const axios = require('axios')
 
 app.use(express.json())
 
 app.use(cors())
-
-
 
 app.get('/Main.vue', (req, res) => {
   res.send([1, 2, 3, 4]);
@@ -67,12 +66,6 @@ app.post('/login', (req, res) => {
 
     })
 
-
-  // const cookieConfig = {
-  //   httpOnly: true,
-  //   secure: true,
-  //   sameSite: 'Strict'
-  // }
  
 
 })
